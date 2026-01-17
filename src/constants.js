@@ -25,6 +25,7 @@ import vercelLogo from './assets/tech_logo/vercel.png';
 import restaurantBooking from './assets/work_logo/restaurant_booking.png';
 import obysagencyclone from './assets/work_logo/obys-agency-clone.png';
 import foodordering from './assets/work_logo/food_ordering.png';
+import OnlineNotepad from './assets/work_logo/online_notepad.png';
 
 export const SkillsInfo = [
   {
@@ -128,6 +129,15 @@ export const SkillsInfo = [
       tags: ["HTML", "CSS", "JavaScript"],
       github: "https://github.com/Adarshraj15/Food-App",
       webapp: "https://foodapp-3000.vercel.app/",
+    },
+    {
+     id: 3,
+      title: "Online Notepad",
+      description:"Online Notepad is a web-based application built using Node.js and EJS that allows users to create, edit, and save notes online. It provides a simple and user-friendly interface for managing text content efficiently from any device.",
+      image: OnlineNotepad,
+      tags: ["JavaScript", "Node.js", "Express.js"],
+      github: "https://github.com/Adarshraj15/Notepad",
+      webapp: "https://notepad-r2j0.onrender.com/",
     },
     
   ];  
