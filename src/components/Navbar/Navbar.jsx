@@ -7,25 +7,18 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Detect scroll and change navbar background
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll function
   const handleMenuItemClick = (sectionId) => {
     setActiveSection(sectionId);
     setIsOpen(false);
-
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   const menuItems = [
@@ -36,110 +29,104 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition duration-300 px-[7vw] md:px-[7vw] lg:px-[20vw] ${
-        isScrolled ? "bg-[#050414] bg-opacity-50 backdrop-blur-md shadow-md" : "bg-transparent"
-      }`}
-    >
-      <div className="text-white py-5 flex justify-between items-center">
-        {/* Logo */}
-        <div className="text-lg font-semibold cursor-pointer">
-          <span className="text-[#4550ec]">&lt;</span>
-          <span className="text-white">Adarsh</span>
-          <span className="text-[#4550ec]">/</span>
-          <span className="text-white">Raj</span>
-          <span className="text-[#4550ec]">&gt;</span>
-        </div>
+    <nav className="fixed top-0 w-full z-50 flex justify-center pt-4">
+      <div
+        className={`w-[90%] lg:w-[70%] rounded-2xl transition-all duration-300
+        ${
+          isScrolled
+            ? "bg-[#050414]/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(99,102,241,0.25)]"
+            : "bg-[#050414]/40 backdrop-blur-md"
+        }`}
+      >
+        {/* Animated gradient bar */}
+        <div className="h-[2px] w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse rounded-t-2xl" />
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-gray-300">
-          {menuItems.map((item) => (
-            <li
-              key={item.id}
-              className={`cursor-pointer hover:text-[#8245ec] ${
-                activeSection === item.id ? "text-[#8245ec]" : ""
-              }`}
-            >
-              <button onClick={() => handleMenuItemClick(item.id)}>
-                {item.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="px-8 py-4 flex justify-between items-center text-white">
+          {/* Logo */}
+          <div className="text-lg font-bold tracking-wider text-white">
+            <span className="text-blue-500">&lt;</span>
+            <span className="drop-shadow-[0_0_12px_#6366f1]">Adarsh</span>
+            <span className="text-purple-500">/</span>
+            <span className="drop-shadow-[0_0_12px_#a855f7]">Raj</span>
+            <span className="text-pink-500">&gt;</span>
+          </div>
 
-        {/* Social Icons */}
-        <div className="hidden md:flex space-x-4">
-          <a
-            href="https://github.com/Adarshraj15"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#8245ec]"
-          >
-            <FaGithub size={24} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/adarsh-raj-14841234a/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-300 hover:text-[#8245ec]"
-          >
-            <FaLinkedin size={24} />
-          </a>
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden">
-          {isOpen ? (
-            <FiX
-              className="text-3xl text-[#8245ec] cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            />
-          ) : (
-            <FiMenu
-              className="text-3xl text-[#8245ec] cursor-pointer"
-              onClick={() => setIsOpen(true)}
-            />
-          )}
-        </div>
-      </div>
-
-      {/* Mobile Menu Items */}
-      {isOpen && (
-        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414] bg-opacity-50 backdrop-filter backdrop-blur-lg z-50 rounded-lg shadow-lg md:hidden">
-          <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300">
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex gap-4">
             {menuItems.map((item) => (
-              <li
-                key={item.id}
-                className={`cursor-pointer hover:text-white ${
-                  activeSection === item.id ? "text-[#8245ec]" : ""
-                }`}
-              >
-                <button onClick={() => handleMenuItemClick(item.id)}>
+              <li key={item.id}>
+                <button
+                  onClick={() => handleMenuItemClick(item.id)}
+                  className={`px-4 py-2 rounded-full transition-all
+                  ${
+                    activeSection === item.id
+                      ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
+                      : "text-gray-300 hover:text-white hover:bg-white/5"
+                  }`}
+                >
                   {item.label}
                 </button>
               </li>
             ))}
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/Adarshraj15"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/adarsh-raj-14841234a/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaLinkedin size={24} />
-              </a>
-            </div>
           </ul>
+
+          {/* Social Icons */}
+          <div className="hidden md:flex gap-3">
+            {[FaGithub, FaLinkedin].map((Icon, i) => (
+              <a
+                key={i}
+                href={
+                  i === 0
+                    ? "https://github.com/Adarshraj15"
+                    : "https://www.linkedin.com/in/adarsh-raj-14841234a/"
+                }
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition"
+              >
+                <Icon size={18} />
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Icon */}
+          <div className="md:hidden">
+            {isOpen ? (
+              <FiX
+                className="text-3xl text-purple-400"
+                onClick={() => setIsOpen(false)}
+              />
+            ) : (
+              <FiMenu
+                className="text-3xl text-purple-400"
+                onClick={() => setIsOpen(true)}
+              />
+            )}
+          </div>
         </div>
-      )}
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden px-6 pb-6">
+            <ul className="flex flex-col gap-4 text-center">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleMenuItemClick(item.id)}
+                  className={`py-2 rounded-xl transition
+                  ${
+                    activeSection === item.id
+                      ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+                      : "text-gray-300 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
