@@ -25,8 +25,8 @@ const About = () => {
             <span className="text-white">I am a </span>
             <ReactTypingEffect
               text={[
-                'MERN Stack Developer',
-                'Coder',
+                'Full Stack Developer',
+                'GenAI Developer',
               ]}
               speed={100}
               eraseSpeed={50}
@@ -39,15 +39,15 @@ const About = () => {
           </h3>
           {/* About Me Paragraph */}
           <p className="text-base sm:text-lg md:text-lg text-gray-400 mb-10 mt-8 leading-relaxed">
-           Detail-oriented Web Developer with a Bachelorʼs degree in Information Technology. Proficient in
-HTML5, CSS3, JavaScript, and React.js, with experience building responsive, user-centric web
-applications. Possess working knowledge of backend development using Node.js, Express.js, and
-MongoDB for creating full-stack applications and RESTful APIs. Familiar with C++ and Java, with a
-strong focus on clean UI/UX, scalable solutions, problem-solving, and continuous learning.
+           Detail-oriented Web Developer with a Bachelorʼs degree in Information Technology. Proficient in Full Stack
+Development and Generative AI concepts including RAG, Vector Databases, Embeddings, LangChain, and
+Prompt Engineering. Experienced in building responsive web applications using HTML5, CSS3, JavaScript
+React.js, Node.js, Express.js, and MongoDB. Skilled in developing AI-powered chatbot systems, RESTful
+APIs, and scalable backend solutions with a strong focus on clean UI/UX, problem-solving, and learning
           </p>
           {/* Resume Button */}
           <a
-            href="/Adarsh_Raj_Resume.pdf"
+             href="/Adarsh_resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-white py-3 px-8 rounded-full mt-5 text-lg font-bold transition duration-300 transform hover:scale-105"
